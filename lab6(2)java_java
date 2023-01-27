@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+class Patient{
+int p_id;
+String p_name;
+int p_age;
+String doc;
+
+void set(){
+System.out.println("Enter patient ID, name, age and attending doctor");
+Scanner s=new Scanner(System.in);
+p_id=s.nextInt();
+p_name=s.next();
+p_age=s.nextInt();
+doc=s.next();
+}
+
+void display(){
+System.out.println("----Patient Details----\n");
+System.out.println("Patient ID: "+p_id+"\nPatient name: "+p_name+"\nAge: "+p_age+"\nAttending doctor: "+doc);
+}
+}
+
+class Lab_62{
+public static void main(String x[]){
+
+System.out.println("Enter number of patients");
+Scanner s=new Scanner(System.in);
+int n=s.nextInt();
+Patient[] p=new Patient[n];
+for(int i=0;i<n;i++){
+p[i]=new Patient();
+p[i].set();
+}
+int choice;
+do{
+System.out.println("Enter choice\n1.Patient details\n2.Patients grouped by doctor\n3.Exit");
+choice=s.nextInt();
+if(choice==1){
+System.out.println("Enter patient ID");
+int id=s.nextInt();
+int i;
+for(i=0;i<n;i++){
+if(p[i].p_id==id){
+p[i].display();
+break;
+}
+}
+if(i==n){
+System.out.println("Patient died");
+}
+}
+else if(choice==2){
+System.out.println("Enter doctor name");
+int i;
+String d=s.next();
+for(i=0;i<n;i++){
+if(p[i].doc==d){
+System.out.println(p[i].p_name);
+break;
+}
+}
+if(i==n){
+System.out.println("Doctor died");
+}
+}
+}while(choice!=3);
+
+}
+}
